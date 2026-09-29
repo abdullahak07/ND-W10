@@ -179,3 +179,150 @@ footer{border-top:1px solid var(--line);padding:24px 0 40px;display:flex;justify
   .zone-title>div{padding-left:0}.zone-no{position:static;display:block;font-size:2rem}
   .tech-list article{grid-template-columns:1fr}
 }
+
+/* ===== Week 10 deep-dive flip playcards ===== */
+.deep-dive{
+  margin-top:28px;
+  padding-top:20px;
+  border-top:1px dashed #bfb6a7;
+}
+.deep-dive-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  gap:20px;
+  margin-bottom:12px;
+}
+.deep-dive-head>div>span{
+  display:block;
+  color:var(--violet);
+  font-size:.61rem;
+  font-weight:900;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+.deep-dive-head h3{
+  margin:5px 0 0;
+  font-size:1.05rem;
+}
+.deep-dive-head p{
+  max-width:620px;
+  margin:0;
+  color:var(--muted);
+  font-size:.74rem;
+  line-height:1.45;
+}
+.deep-dive-grid{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:12px;
+}
+.deep-flip{
+  height:260px;
+  border:0;
+  background:transparent;
+  padding:0;
+  perspective:1200px;
+  text-align:left;
+}
+.deep-flip-inner{
+  position:relative;
+  width:100%;
+  height:100%;
+  transform-style:preserve-3d;
+  transition:transform .42s ease;
+}
+.deep-flip.flipped .deep-flip-inner{
+  transform:rotateY(180deg);
+}
+.deep-face{
+  position:absolute;
+  inset:0;
+  border-radius:14px;
+  backface-visibility:hidden;
+  border:1px solid var(--line);
+  padding:15px;
+  overflow:auto;
+}
+.deep-front{
+  background:linear-gradient(180deg,#fffdf8,#f0ece3);
+  box-shadow:0 8px 24px rgba(23,21,31,.06);
+  display:flex;
+  flex-direction:column;
+}
+.deep-front .deep-index{
+  font-size:.6rem;
+  color:var(--violet);
+  letter-spacing:.11em;
+  font-weight:900;
+}
+.deep-front h4{
+  font-family:Georgia,serif;
+  font-size:1.34rem;
+  line-height:1.08;
+  margin:auto 0 8px;
+}
+.deep-front p{
+  margin:0 0 12px;
+  color:var(--muted);
+  font-size:.74rem;
+  line-height:1.45;
+}
+.deep-front .flip-hint{
+  font-size:.62rem;
+  font-weight:900;
+  color:var(--coral);
+  letter-spacing:.08em;
+}
+.deep-back{
+  transform:rotateY(180deg);
+  background:var(--ink);
+  color:#fff;
+}
+.deep-back h4{
+  margin:0 0 9px;
+  font-size:.9rem;
+  color:var(--gold);
+}
+.deep-back ul{
+  margin:0;
+  padding-left:17px;
+}
+.deep-back li{
+  margin:0 0 7px;
+  color:#d5d1dc;
+  font-size:.7rem;
+  line-height:1.42;
+}
+.deep-back li:last-child{margin-bottom:0}
+.deep-flip:focus-visible{
+  outline:3px solid var(--violet);
+  outline-offset:3px;
+  border-radius:14px;
+}
+.deep-dive-tools{
+  display:flex;
+  gap:7px;
+  align-items:center;
+}
+.deep-dive-tools button{
+  border:1px solid var(--ink);
+  background:#fff;
+  color:var(--ink);
+  border-radius:999px;
+  padding:7px 10px;
+  font-size:.66rem;
+  font-weight:900;
+}
+.deep-dive-tools button:hover{background:#ece7dd}
+
+@media(max-width:1180px){
+  .deep-dive-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:760px){
+  .deep-dive-head{display:block}
+  .deep-dive-head p{margin-top:7px}
+  .deep-dive-tools{margin-top:10px}
+  .deep-dive-grid{grid-template-columns:1fr}
+  .deep-flip{height:240px}
+}
