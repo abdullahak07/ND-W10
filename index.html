@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>COMP6012 Week 10 · AI Applications in Cyber Threat Analytics</title>
+<meta name="theme-color" content="#17151f">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="readProgress"></div>
+
+<header class="topbar">
+  <a class="brand" href="#top"><span class="brand-badge">W10</span><span><b>COMP6012</b><small>AI Applications in Cyber Threat Analytics</small></span></a>
+  <nav>
+    <a href="#ai-cti">AI + CTI</a>
+    <a href="#maturity">Maturity</a>
+    <a href="#hunt">Hunt</a>
+    <a href="#cti-hunt">CTI × Hunting</a>
+    <a href="#adversary">Adversary AI</a>
+    <a href="#stack">Security Stack</a>
+    <a href="#qradar">QRadar</a>
+  </nav>
+  <div class="score-chip"><span>XP</span><b id="xp">0</b></div>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="hero-left">
+    <div class="kicker">AQF LEVEL 9 · WEEK 10 · ANALYST TRAINING GROUND</div>
+    <h1>AI DOESN’T<br>REPLACE THE HUNTER.<br><span>IT EXPANDS THE HUNT.</span></h1>
+    <p class="hero-copy">Use the site like a live classroom board: read the short concepts, play the mini-games, then connect AI, threat hunting, CTI, adversary behaviour and SIEM architecture into one defensible security program.</p>
+    <div class="hero-actions">
+      <button class="btn primary" data-jump="#ai-cti">Begin mission</button>
+      <button class="btn ghost" data-jump="#final">Final challenge</button>
+    </div>
+    <div class="micro-grid">
+      <div><b>5</b><span>AI benefits in CTI</span></div>
+      <div><b>3</b><span>Hunting maturity levels</span></div>
+      <div><b>5</b><span>Hunt process steps</span></div>
+      <div><b>2</b><span>Sides of the AI arms race</span></div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="mission-card">
+      <div class="mission-top"><span>MISSION MAP</span><small>7 zones + final</small></div>
+      <ol>
+        <li><i>01</i><div><b>AI + CTI</b><span>Why humans need machine assistance</span></div></li>
+        <li><i>02</i><div><b>Maturity</b><span>Level 1 → Level 3 hunting</span></div></li>
+        <li><i>03</i><div><b>Hunt Process</b><span>Purpose → report & feedback</span></div></li>
+        <li><i>04</i><div><b>CTI × Hunting</b><span>IOCs, TTPs, ATT&CK and the V</span></div></li>
+        <li><i>05</i><div><b>Adversary AI</b><span>Smart malware and adaptive attacks</span></div></li>
+        <li><i>06</i><div><b>Security Stack</b><span>Where AI belongs</span></div></li>
+        <li><i>07</i><div><b>QRadar</b><span>Reference architecture</span></div></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="zone" id="ai-cti">
+  <div class="zone-title">
+    <div><span class="zone-no">01</span><div class="kicker">AI + CTI</div><h2>Why human-only analysis breaks at scale.</h2></div>
+    <p>CTI teams must uncover patterns across huge, mixed datasets. Humans are essential, but manual-only analysis introduces delay, inconsistency, bias and missed patterns.</p>
+  </div>
+
+  <div class="problem-strip">
+    <article><b>Too much data</b><span>Manual examination becomes inconsistent.</span></article>
+    <article><b>Interpretation bias</b><span>Ambiguous evidence can be read subjectively.</span></article>
+    <article><b>Hidden patterns</b><span>Subtle signals are easy to miss.</span></article>
+    <article><b>Slow processing</b><span>Threats stay active while analysts triage.</span></article>
+  </div>
+
+  <h3 class="minihead">Five documented benefits of AI in CTI</h3>
+  <div class="benefit-grid">
+    <article><span>01</span><b>Faster response</b><p>Automate correlation and routine analysis so standard response can move from days toward minutes.</p></article>
+    <article><span>02</span><b>Earlier detection</b><p>User and entity behaviour analytics can spot anomalies as behaviour changes.</p></article>
+    <article><span>03</span><b>Predictive analytics</b><p>Historical attacks help models support hunting beyond fixed signatures.</p></article>
+    <article><span>04</span><b>Bias reduction</b><p>Data-driven analysis can reduce subjective interpretation when applied carefully.</p></article>
+    <article><span>05</span><b>Fewer false positives</b><p>AI plus human judgement is stronger than either working alone.</p></article>
+  </div>
+
+  <div class="game game-benefits">
+    <div class="game-head"><div><span>GAME 1</span><h3>Benefit Blitz</h3></div><p>Read the scenario and choose the AI benefit it illustrates.</p></div>
+    <div class="game-stage">
+      <div class="scenario" id="benefitScenario">A SOC receives millions of events every day. An AI engine correlates them and cuts routine triage from hours to minutes.</div>
+      <div class="choice-row" id="benefitChoices"></div>
+      <div class="game-feedback" id="benefitFeedback">Round 1 of 5</div>
+    </div>
+  </div>
+
+  <div class="double-edge">
+    <div class="good"><span>DEFENDER</span><b>AI finds hidden patterns, prioritises alerts and accelerates response.</b></div>
+    <div class="blade">AI</div>
+    <div class="bad"><span>ADVERSARY</span><b>The same capability can automate evasion, phishing and vulnerability discovery.</b></div>
+  </div>
+</section>
+
+<section class="zone alt" id="maturity">
+  <div class="zone-title">
+    <div><span class="zone-no">02</span><div class="kicker">THREAT HUNTING MATURITY</div><h2>Start where the organisation actually is.</h2></div>
+    <p>The maturity model is cumulative. Level 3 does not replace Level 1; it adds capability, policy, specialist people and automation on top of the foundation.</p>
+  </div>
+
+  <div class="levels">
+    <article class="level l1">
+      <div class="level-cap"><span>LEVEL 1</span><b>Basic hunting</b></div>
+      <ul>
+        <li>Centralised SOC + basic IR</li>
+        <li>Collect internal + open-source data</li>
+        <li>Use existing internal analysts</li>
+        <li>Excel / open-source BI is enough to start</li>
+      </ul>
+    </article>
+    <article class="level l2">
+      <div class="level-cap"><span>LEVEL 2</span><b>Structured hunting</b></div>
+      <ul>
+        <li>Level 1 foundation already exists</li>
+        <li>Established IR + frequent feeds</li>
+        <li>Analytics and AI classification</li>
+        <li>Formal threat hunting policy</li>
+      </ul>
+    </article>
+    <article class="level l3">
+      <div class="level-cap"><span>LEVEL 3</span><b>Mature + automated</b></div>
+      <ul>
+        <li>Mature CTI program</li>
+        <li>Skilled hunting team</li>
+        <li>Automated collection and modelling</li>
+        <li>Integrated hunting platform</li>
+      </ul>
+    </article>
+  </div>
+
+  <div class="game">
+    <div class="game-head"><div><span>GAME 2</span><h3>Maturity Matcher</h3></div><p>Which maturity level fits the organisation?</p></div>
+    <div class="game-stage maturity-game">
+      <div class="scenario" id="maturityScenario">The organisation has a SOC and basic IR. Analysts use Excel to inspect unusual flows, but there is no formal hunting policy.</div>
+      <div class="choice-row">
+        <button data-maturity="1">Level 1</button>
+        <button data-maturity="2">Level 2</button>
+        <button data-maturity="3">Level 3</button>
+      </div>
+      <div class="game-feedback" id="maturityFeedback">Choose a level.</div>
+    </div>
+  </div>
+
+  <div class="remember"><b>Remember:</b><span>Tooling escalates with data volume; policy becomes more formal; team investment increases; automation is the defining Level 3 trait.</span></div>
+</section>
+
+<section class="zone" id="hunt">
+  <div class="zone-title">
+    <div><span class="zone-no">03</span><div class="kicker">THE THREAT HUNTING PROCESS</div><h2>Hunt with discipline, not curiosity alone.</h2></div>
+    <p>The five-step process is designed to work at any maturity level. Every hunt starts with purpose and scope, then selects data and techniques, and closes with reporting and feedback.</p>
+  </div>
+
+  <div class="process">
+    <article><span>1</span><b>Objectives & purpose</b><p>Why are you hunting? Define the business-linked goal and hypothesis.</p></article>
+    <i>→</i>
+    <article><span>2</span><b>Scope</b><p>Define the system under test: business area, subnet, host, server or application set.</p></article>
+    <i>→</i>
+    <article><span>3</span><b>Data selection</b><p>Select internal + external data that can test the hypothesis.</p></article>
+    <i>→</i>
+    <article><span>4</span><b>Technique</b><p>Searching, clustering, classification or stack counting.</p></article>
+    <i>→</i>
+    <article><span>5</span><b>Report & feedback</b><p>Document findings and test whether data + technique were good enough.</p></article>
+  </div>
+
+  <div class="split">
+    <div>
+      <h3 class="minihead">C2 example: useful data sources</h3>
+      <div class="chip-cloud">
+        <span>Firewall logs</span><span>IDS / IPS</span><span>Proxy</span><span>HTTP</span><span>DNS</span><span>FTP</span><span>SSL</span><span>SMTP</span><span>Endpoint telemetry</span><span>Hashes</span><span>VPN logs</span><span>External intelligence</span>
+      </div>
+      <div class="remember small"><b>Rule:</b><span>Validate data sources before using them in a hunt.</span></div>
+    </div>
+    <div>
+      <h3 class="minihead">Four foundational techniques</h3>
+      <div class="tech-list">
+        <article><b>Searching</b><span>Find IPs, domains, hashes or other indicators.</span></article>
+        <article><b>Clustering</b><span>Group similar events/flows without labels.</span></article>
+        <article><b>Classification</b><span>Assign events to defined classes.</span></article>
+        <article><b>Stack counting</b><span>Count occurrences to expose unusual elements.</span></article>
+      </div>
+    </div>
+  </div>
+
+  <div class="game">
+    <div class="game-head"><div><span>GAME 3</span><h3>Build the Hunt</h3></div><p>Put the five hunting steps in the correct order.</p></div>
+    <div class="game-stage">
+      <div id="huntOrder" class="order-board"></div>
+      <div class="choice-row"><button id="checkHunt">Check order</button><button id="shuffleHunt" class="light">Shuffle</button></div>
+      <div class="game-feedback" id="huntFeedback">Move items up/down, then check your sequence.</div>
+    </div>
+  </div>
+
+  <div class="game secondary-game">
+    <div class="game-head"><div><span>GAME 4</span><h3>Technique Picker</h3></div><p>Match the scenario to the best foundational technique.</p></div>
+    <div class="game-stage">
+      <div class="scenario" id="techScenario">You have a list of known malicious domains and want to find them in DNS logs.</div>
+      <div class="choice-row" id="techChoices"></div>
+      <div class="game-feedback" id="techFeedback">Round 1 of 4</div>
+    </div>
+  </div>
+</section>
+
+<section class="zone alt" id="cti-hunt">
+  <div class="zone-title">
+    <div><span class="zone-no">04</span><div class="kicker">COUPLING CTI WITH THREAT HUNTING</div><h2>Hunt what is expensive for the adversary to change.</h2></div>
+    <p>IOC-only hunting is brittle. Hashes, IPs and domains are cheap to replace. TTP-level hunting is more durable because adversaries rarely change their entire operating method.</p>
+  </div>
+
+  <div class="ioc-ttp">
+    <div class="ioc">
+      <span>LOWER PAIN</span><h3>IOCs</h3>
+      <p>Hashes · IPs · domains · strings</p>
+      <b>Useful, but cheap for the adversary to change.</b>
+    </div>
+    <div class="arrow-big">→</div>
+    <div class="ttp">
+      <span>HIGHER PAIN</span><h3>TTPs</h3>
+      <p>Tactics · techniques · procedures</p>
+      <b>Harder to replace because they are tied to how the adversary operates.</b>
+    </div>
+  </div>
+
+  <div class="framework-grid">
+    <article><span>ATT&CK</span><b>TTP reference</b><p>Use documented adversary techniques to build hypotheses and analytics.</p></article>
+    <article><span>DIAMOND</span><b>Relationships</b><p>Connect adversary, capability, infrastructure and victim.</p></article>
+    <article><span>KILL CHAIN</span><b>Attack structure</b><p>Understand and anticipate activity across the attack lifecycle.</p></article>
+    <article><span>PYRAMID OF PAIN</span><b>Durability</b><p>Move upward from cheap-to-change indicators toward expensive-to-change TTPs.</p></article>
+  </div>
+
+  <div class="v-diagram">
+    <div class="v-title">THE TTP THREAT HUNTING “V”</div>
+    <div class="v-grid">
+      <div class="leg left">
+        <span>CHARACTERIZATION</span>
+        <b>Model malicious activity</b>
+        <b>Form hypotheses</b>
+        <b>Determine data requirements</b>
+      </div>
+      <div class="v-core"><span>FILTER</span><b>CTI ↔ HUNTING</b></div>
+      <div class="leg right">
+        <span>EXECUTION</span>
+        <b>Implement analytics</b>
+        <b>Hunt + detect</b>
+        <b>Investigate activity</b>
+      </div>
+    </div>
+  </div>
+
+  <div class="game">
+    <div class="game-head"><div><span>GAME 5</span><h3>IOC or TTP?</h3></div><p>Classify each artefact. TTPs are generally harder for the adversary to change.</p></div>
+    <div class="game-stage">
+      <div class="scenario big" id="ttpScenario">SHA-256: 9d7f…</div>
+      <div class="choice-row"><button data-ttp="IOC">IOC</button><button data-ttp="TTP">TTP</button></div>
+      <div class="game-feedback" id="ttpFeedback">Round 1 of 6</div>
+    </div>
+  </div>
+</section>
+
+<section class="zone" id="adversary">
+  <div class="zone-title">
+    <div><span class="zone-no">05</span><div class="kicker">HOW ADVERSARIES LEVERAGE AI</div><h2>The defender is not the only one learning.</h2></div>
+    <p>The lecture frames AI as a genuine double-edged sword: defenders gain adaptive analytics while adversaries gain adaptive malware, logic bombs, social engineering and automated vulnerability discovery.</p>
+  </div>
+
+  <div class="adversary-grid">
+    <article class="threat-card"><span>SMART MALWARE</span><h3>Self-evaluate</h3><p>Observe which part of malicious code triggered defence and adjust behaviour.</p></article>
+    <article class="threat-card"><span>SMART MALWARE</span><h3>Self-actuate</h3><p>Change behaviour to confuse controls while preserving minimum malicious function.</p></article>
+    <article class="threat-card"><span>IMPERSONATION</span><h3>Blend in</h3><p>Learn genuine processes and applications so malicious activity looks normal.</p></article>
+    <article class="threat-card"><span>SMART WORM</span><h3>Find + exploit</h3><p>Check systems for vulnerabilities and propagate automatically.</p></article>
+    <article class="threat-card"><span>LOGIC BOMB</span><h3>Wait for the moment</h3><p>Trigger based on time, user count, unpatched software or system location.</p></article>
+    <article class="threat-card"><span>ATTACK VECTOR</span><h3>Automate discovery</h3><p>Use AI to crawl for weaknesses and initiate full-cycle attacks.</p></article>
+  </div>
+
+  <div class="game red-game">
+    <div class="game-head"><div><span>GAME 6</span><h3>Defender or Adversary?</h3></div><p>Classify the AI use case as defensive or adversarial.</p></div>
+    <div class="game-stage">
+      <div class="scenario" id="edgeScenario">A model learns normal user behaviour and flags anomalous login activity.</div>
+      <div class="choice-row"><button data-edge="DEFENDER">Defender</button><button data-edge="ADVERSARY">Adversary</button></div>
+      <div class="game-feedback" id="edgeFeedback">Round 1 of 6</div>
+    </div>
+  </div>
+
+  <div class="remember"><b>Arms race:</b><span>Static rule-based defence struggles when malicious code changes its own signature and behaviour. CTI analysts still need deep TTP understanding.</span></div>
+</section>
+
+<section class="zone alt" id="stack">
+  <div class="zone-title">
+    <div><span class="zone-no">06</span><div class="kicker">AI’S POSITION IN THE SECURITY STACK</div><h2>Position AI. Don’t just bolt it on.</h2></div>
+    <p>AI belongs across the SOC, incident response, TIP/SIEM tooling and threat hunting. Security sources feed AI and analytics; human expertise remains part of the loop.</p>
+  </div>
+
+  <div class="stack-map">
+    <div class="stack-column sources">
+      <span>SECURITY SOURCES</span>
+      <b>Network</b><b>Endpoint</b><b>Data</b><b>Identity & access</b><b>Application</b><b>Cloud + IoT</b><b>External data</b>
+    </div>
+    <div class="stack-arrow">→</div>
+    <div class="stack-column engine">
+      <span>AI + ANALYTICS ENGINE</span>
+      <b>Machine learning</b><b>NLP</b><b>Correlation</b><b>Outliers</b><b>Prioritisation</b><b>Trend analysis</b><b>Human expertise</b>
+    </div>
+    <div class="stack-arrow">→</div>
+    <div class="stack-column outputs">
+      <span>OUTCOMES</span>
+      <b>Threat identification</b><b>Vulnerability identification</b><b>Risk identification</b><b>Security gaps</b><b>Faster incident response</b><b>Quicker decisions</b>
+    </div>
+  </div>
+
+  <div class="position-grid">
+    <article><span>1</span><b>SOC</b><p>Protect network, critical assets, endpoints, applications and cloud services.</p></article>
+    <article><span>2</span><b>Incident response</b><p>Support quicker identification, decisions and remediation.</p></article>
+    <article><span>3</span><b>TIP + SIEM</b><p>Improve objective, reliable threat intelligence analytics across the platform.</p></article>
+    <article><span>4</span><b>Threat hunting</b><p>Close the loop between analytics, hypotheses and proactive investigation.</p></article>
+  </div>
+
+  <div class="game">
+    <div class="game-head"><div><span>GAME 7</span><h3>Stack Placement</h3></div><p>Where does this item belong?</p></div>
+    <div class="game-stage">
+      <div class="scenario" id="stackScenario">DNS logs</div>
+      <div class="choice-row"><button data-stack="SOURCE">Security source</button><button data-stack="ENGINE">AI / analytics engine</button><button data-stack="OUTPUT">Security outcome</button></div>
+      <div class="game-feedback" id="stackFeedback">Round 1 of 6</div>
+    </div>
+  </div>
+
+  <div class="remember"><b>Practical starting point:</b><span>For smaller organisations, focus first on high-benefit, lower-complexity use cases such as behavioural analysis, fraud detection and intrusion detection.</span></div>
+</section>
+
+<section class="zone" id="qradar">
+  <div class="zone-title">
+    <div><span class="zone-no">07</span><div class="kicker">IBM QRADAR ADVISOR APPROACH</div><h2>A reference architecture for AI-enabled SIEM.</h2></div>
+    <p>The lecture uses QRadar as a worked reference point, not a mandate. The architecture shows what an AI-enabled SIEM should collect, process, expose and automate.</p>
+  </div>
+
+  <div class="qradar-pipe">
+    <article><span>1</span><b>DATA COLLECTION</b><p>Event Collector<br>Flow Collector</p></article>
+    <i>→</i>
+    <article><span>2</span><b>DATA PROCESSING</b><p>Event Processing<br>Flow Processing<br>Rule engine</p></article>
+    <i>→</i>
+    <article><span>3</span><b>SEARCH + APPS</b><p>Graphs<br>Reports<br>Alerts<br>Human-readable analytics</p></article>
+  </div>
+
+  <div class="qr-benefits">
+    <article><b>Automation</b><span>Reduce routine analyst workload.</span></article>
+    <article><b>Analytics</b><span>Correlate internal + external data.</span></article>
+    <article><b>ATT&CK mapping</b><span>Map events and flows to TTPs.</span></article>
+    <article><b>Pre-built use cases</b><span>Anomaly detection + prioritisation.</span></article>
+    <article><b>Visualisation</b><span>Relationships across assets, users and IOCs.</span></article>
+    <article><b>Dwell-time reduction</b><span>Faster investigation + response.</span></article>
+    <article><b>Threat hunting</b><span>Embedded analytics + automation.</span></article>
+    <article><b>Compliance</b><span>HIPAA, GDPR, PCI DSS packages.</span></article>
+    <article><b>Modularity</b><span>Buy and expand capabilities as needed.</span></article>
+    <article><b>Support</b><span>Vendor maintenance + support portal.</span></article>
+  </div>
+
+  <h3 class="minihead">Five core capabilities</h3>
+  <div class="module-grid">
+    <article><span>RISK</span><b>Risk Manager</b></article>
+    <article><span>VULN</span><b>Vulnerability Manager</b></article>
+    <article><span>FORENSICS</span><b>Incident Forensics</b></article>
+    <article><span>AI</span><b>Advisor with Watson</b></article>
+    <article><span>ANALYTICS</span><b>Security Analytics</b></article>
+  </div>
+
+  <div class="split qsplit">
+    <div>
+      <h3 class="minihead">Deployment sizing</h3>
+      <div class="tech-list">
+        <article><b>Single host</b><span>Smaller organisations / lower exposure.</span></article>
+        <article><b>Multi-host</b><span>Scale components as enterprise needs grow.</span></article>
+        <article><b>Licensing</b><span>Events per second + flows per minute.</span></article>
+        <article><b>Storage</b><span>Determines retention for historical analytics.</span></article>
+      </div>
+    </div>
+    <div>
+      <h3 class="minihead">Deployment models</h3>
+      <div class="chip-cloud"><span>On-premises</span><span>Managed service / SaaS</span><span>Cloud</span><span>Hybrid</span></div>
+      <div class="remember small"><b>Evaluate:</b><span>Licensing, storage, compliance and existing infrastructure.</span></div>
+    </div>
+  </div>
+
+  <div class="game">
+    <div class="game-head"><div><span>GAME 8</span><h3>QRadar Pipeline Builder</h3></div><p>Put the architecture layers in the correct order.</p></div>
+    <div class="game-stage">
+      <div id="qradarOrder" class="order-board short"></div>
+      <div class="choice-row"><button id="checkQradar">Check pipeline</button><button id="shuffleQradar" class="light">Shuffle</button></div>
+      <div class="game-feedback" id="qradarFeedback">Collection → processing → search/apps.</div>
+    </div>
+  </div>
+</section>
+
+<section class="zone final" id="final">
+  <div class="zone-title">
+    <div><span class="zone-no">08</span><div class="kicker">FINAL CHALLENGE</div><h2>Can you run an AI-enabled hunt?</h2></div>
+    <p>Seven questions across AI benefits, maturity, hunting, CTI, adversary AI, stack positioning and QRadar.</p>
+  </div>
+  <div id="finalQuiz" class="final-grid"></div>
+</section>
+</main>
+
+<footer><b>COMP6012 · WEEK 10</b><span>AI Applications in Cyber Threat Analytics</span></footer>
+<script src="app.js"></script>
+</body>
+</html>
