@@ -619,7 +619,7 @@ function buildDeepDive(zoneId,cards){
   cards.forEach((card,index)=>{
     const btn=document.createElement('button');
     btn.type='button';btn.className='deep-flip';btn.setAttribute('aria-pressed','false');
-    btn.innerHTML='<span class="deep-flip-inner"><span class="deep-face deep-front"><span class="deep-index">DEEP '+String(index+1).padStart(2,'0')+'</span><h4>'+card.title+'</h4><p>'+card.teaser+'</p><span class="flip-hint">CLICK TO FLIP ↻</span></span><span class="deep-face deep-back"><h4>'+card.title+'</h4><ul>'+card.bullets.map(x=>'<li>'+x+'</li>').join('')+'</ul></span></span>';
+    btn.innerHTML='<div class="deep-flip-inner"><div class="deep-face deep-front"><span class="deep-index">DEEP '+String(index+1).padStart(2,'0')+'</span><h4>'+card.title+'</h4><p>'+card.teaser+'</p><span class="flip-hint">CLICK TO FLIP ↻</span></div><div class="deep-face deep-back"><h4>'+card.title+'</h4><ul>'+card.bullets.map(x=>'<li>'+x+'</li>').join('')+'</ul></div></div>';
     btn.onclick=()=>{const on=!btn.classList.contains('flipped');btn.classList.toggle('flipped',on);btn.setAttribute('aria-pressed',on?'true':'false')};
     grid.appendChild(btn);
   });
